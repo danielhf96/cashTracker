@@ -22,7 +22,16 @@
             <div class="w-full max-w-100">
                 <img src="{{ asset('img/logo.svg') }}" />
             </div>
-            <nav></nav>
+            <nav class="flex flex-col lg:flex-row item-center gap-4">
+                <a href="{{ route('login') }}" class="text-white font-bold uppercase p-2">
+                    Iniciar sesión
+                </a>
+
+                <a href="{{ route('register') }}"
+                    class="font-bold uppercase border-2 border-amber-500 px-5 py-2 text-amber-500">
+                    Crear cuenta
+                </a>
+            </nav>
         </div>
     </header>
 
