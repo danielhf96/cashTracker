@@ -6,13 +6,19 @@
 
 @section('auth-contents')
 
-<form class="mt-14 space-y-5" novalidate>
+<form method="POST" action="{{ route('register.store') }}" class="mt-14 space-y-5" novalidate>
+    @csrf
+
     <div class="space-y-2">
         <label class="font-bold text-2xl block" for="name">Nombre</label>
 
         <input id="name" type="text" placeholder="Tu Nombre" class="w-full border border-gray-300 p-3 rounded-lg"
             name="name" />
     </div>
+
+    @error('name')
+        <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+    @enderror
 
     <div class="space-y-2">
         <label class="font-bold text-2xl block" for="email">Email</label>
@@ -21,12 +27,21 @@
             class="w-full border border-gray-300 p-3 rounded-lg" name="email" />
     </div>
 
+    @error('email')
+        <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+    @enderror
+
     <div class="space-y-2">
         <label class="font-bold text-2xl block">Password</label>
 
         <input type="password" placeholder="Password de Registro" class="w-full border border-gray-300 p-3 rounded-lg"
             name="password" />
     </div>
+
+    @error('password')
+        <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+        
+    @enderror
 
     <div class="space-y-2">
         <label class="font-bold text-2xl block" for="password_confirmation">Repetir Password</label>
