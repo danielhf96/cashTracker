@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,8 +27,14 @@ Route::get('email/verification', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
+Route::post('email/verification-notification', function (Request $request){
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('success', '¡Correo de verificación reenviado!');
+})->middleware(['auth', 'throttle:1,1'])->name('verification.send');
+
 /* Rutas para login */
 Route::get('/auth/login', [LoginController::class, 'index'])->name('login');
+Route::post('/auth/login', [LoginController::class, 'store'])->name('login.store');
 
 /* Dashboard */
 Route::get('/dashboard', function () {
