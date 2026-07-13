@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -35,6 +36,8 @@ Route::post('email/verification-notification', function (Request $request){
 /* Rutas para login */
 Route::get('/auth/login', [LoginController::class, 'index'])->name('login');
 Route::post('/auth/login', [LoginController::class, 'store'])->name('login.store');
+
+Route::post('/auth/logout', [LogoutController::class, 'store'])->name('logout.store');
 
 /* Dashboard */
 Route::get('/dashboard', function () {
